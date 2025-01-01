@@ -221,7 +221,7 @@ inst_jump(){
 
 inst_pwd(){
    # 生成包含特殊字符的20位随机密码
-    LC_ALL=C tr -dc 'a-zA-Z0-9!@#$%^&*()-_=+[{]}\|;:\'",<.>/?' < /dev/urandom | fold -w 20 | head -n 1 | tee /dev/stderr | read auth_pwd
+    auth_pwd=$(LC_ALL=C tr -dc 'a-zA-Z0-9!@#$%^&*()-_=+[{]}\|;:\'",<.>/?' < /dev/urandom | fold -w 20 | head -n 1)
     yellow "使用在 Hysteria 2 节点的密码为：$auth_pwd"
 }
 
