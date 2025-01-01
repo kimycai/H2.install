@@ -1,5 +1,5 @@
 #!/bin/bash
-# Misaka-Hysteria2被替换成kimy-Hysteria2
+
 export LANG=en_US.UTF-8
 
 RED="\033[31m"
@@ -214,22 +214,15 @@ inst_jump(){
     fi
 }
 
-
-#  read -p "设置 Hysteria 2 密码（回车跳过为随机字符）：" auth_pwd
- #   [[ -z $auth_pwd ]] && auth_pwd=$(date +%s%N | md5sum | cut -c 1-12)
-  #  yellow "使用在 Hysteria 2 节点的密码为：$auth_pwd"
-
 inst_pwd(){
-   # 生成包含特殊字符的20位随机密码
-    auth_pwd=$(LC_ALL=C tr -dc 'a-zA-Z0-9!@#$%^&*()-_=+[{]}\|;:\'",<.>/?' < /dev/urandom | fold -w 20 | head -n 1)
+    read -p "设置 Hysteria 2 密码（回车跳过为随机字符）：" auth_pwd
+    [[ -z $auth_pwd ]] && auth_pwd=$(date +%s%N | md5sum | cut -c 1-8)
     yellow "使用在 Hysteria 2 节点的密码为：$auth_pwd"
 }
 
-
-
 inst_site(){
-    read -rp "请输入 Hysteria 2 的伪装网站地址 （去除https://） [回车默认为bing搜索]：" proxysite
-    [[ -z $proxysite ]] && proxysite="www.bing.com"
+    read -rp "请输入 Hysteria 2 的伪装网站地址 （去除https://） [回车世嘉maimai日本网站]：" proxysite
+    [[ -z $proxysite ]] && proxysite="maimai.sega.jp"
     yellow "使用在 Hysteria 2 节点的伪装网站为：$proxysite"
 }
 
@@ -251,13 +244,9 @@ insthysteria(){
     fi
     ${PACKAGE_INSTALL} curl wget sudo qrencode procps iptables-persistent netfilter-persistent
 
-    wget -N https://raw.githubusercontent.com/kimycai/H2.install/main/install_H2Server.sh
-
-
-
-    
-    bash install_H2Server.sh
-    rm -f install_H2Server.sh
+    wget -N https://raw.githubusercontent.com/Misaka-blog/hysteria-install/main/hy2/install_server.sh
+    bash install_server.sh
+    rm -f install_server.sh
 
     if [[ -f "/usr/local/bin/hysteria" ]]; then
         green "Hysteria 2 安装成功！"
@@ -377,7 +366,7 @@ dns:
     - 1.1.1.1
     - 114.114.114.114
 proxies:
-  - name: kimy-Hysteria2
+  - name: Misaka-Hysteria2
     type: hysteria2
     server: $last_ip
     port: $port
@@ -388,15 +377,15 @@ proxy-groups:
   - name: Proxy
     type: select
     proxies:
-      - kimy-Hysteria2
+      - Misaka-Hysteria2
       
 rules:
   - GEOIP,CN,DIRECT
   - MATCH,Proxy
 EOF
-    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#kimy-Hysteria2"
+    url="hysteria2://$auth_pwd@$last_ip:$last_port/?insecure=1&sni=$hy_domain#Misaka-Hysteria2"
     echo $url > /root/hy/url.txt
-    nohopurl="hysteria2://$auth_pwd@$last_ip:$port/?insecure=1&sni=$hy_domain#kimy-Hysteria2"
+    nohopurl="hysteria2://$auth_pwd@$last_ip:$port/?insecure=1&sni=$hy_domain#Misaka-Hysteria2"
     echo $nohopurl > /root/hy/url-nohop.txt
 
     systemctl daemon-reload
@@ -568,7 +557,15 @@ update_core(){
 
 menu() {
     clear
-  
+    echo "#############################################################"
+    echo -e "#                  ${RED}Hysteria 2 一键安装脚本${PLAIN}                  #"
+    echo -e "# ${GREEN}作者${PLAIN}: MisakaNo の 小破站                                  #"
+    echo -e "# ${GREEN}博客${PLAIN}: https://blog.misaka.cyou                            #"
+    echo -e "# ${GREEN}GitHub 项目${PLAIN}: https://github.com/Misaka-blog               #"
+    echo -e "# ${GREEN}GitLab 项目${PLAIN}: https://gitlab.com/Misaka-blog               #"
+    echo -e "# ${GREEN}Telegram 频道${PLAIN}: https://t.me/misakanocchannel              #"
+    echo -e "# ${GREEN}Telegram 群组${PLAIN}: https://t.me/misakanoc                     #"
+    echo -e "# ${GREEN}YouTube 频道${PLAIN}: https://www.youtube.com/@misaka-blog        #"
     echo "#############################################################"
     echo ""
     echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria 2"
