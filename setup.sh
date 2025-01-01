@@ -562,9 +562,10 @@ update_core(){
 menu() {
     clear
     echo "#############################################################"
-
+    echo -e "#                  ${RED}Hysteria 2 一键安装脚本${PLAIN}                  #"
+ 
     echo "#############################################################"
-    echo ""
+   
     echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria 2"
     echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 2${PLAIN}"
     echo " -------------"
