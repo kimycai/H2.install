@@ -549,10 +549,11 @@ showconf(){
 }
 
 update_core(){
-    wget -N https://raw.githubusercontent.com/Misaka-blog/hysteria-install/main/hy2/install_server.sh
-    bash install_server.sh
-    
-    rm -f install_server.sh
+     wget -N https://raw.githubusercontent.com/kimycai/H2.install/main/install_H2Server.sh
+
+
+    bash install_H2Server.sh
+    rm -f install_H2Server.sh
 }
 
 menu() {
