@@ -215,10 +215,13 @@ inst_jump(){
 }
 
 inst_pwd(){
-   # auth_pwd=$(tr -cd 'a-zA-Z0-9' < /dev/urandom | fold -w 12 | head -n 1)
-    auth_pwd=$(tr -cd 'a-zA-Z0-9' < /dev/urandom | fold -w 12 | head -n 1)
+     read -p "设置 Hysteria 2 密码（回车跳过为随机字符）：" auth_pwd
+    [[ -z $auth_pwd ]] && auth_pwd=$(date +%s%N | md5sum | cut -c 1-8)
     yellow "使用在 Hysteria 2 节点的密码为：$auth_pwd"
+
 }
+
+
 inst_site(){
     read -rp "请输入 Hysteria 2 的伪装网站地址 （去除https://） [回车世嘉maimai日本网站]：" proxysite
     [[ -z $proxysite ]] && proxysite="maimai.sega.jp"
