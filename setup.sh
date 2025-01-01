@@ -562,9 +562,18 @@ update_core(){
 
 menu() {
     clear
-   
-
-    echo -e " ${GREEN}1.${PLAIN} 安装  Hysteria 2"
+    echo "#############################################################"
+    echo -e "#                  ${RED}Hysteria 2 一键安装脚本${PLAIN}                  #"
+    echo -e "# ${GREEN}作者${PLAIN}: MisakaNo の 小破站                                  #"
+    echo -e "# ${GREEN}博客${PLAIN}: https://blog.misaka.cyou                            #"
+    echo -e "# ${GREEN}GitHub 项目${PLAIN}: https://github.com/Misaka-blog               #"
+    echo -e "# ${GREEN}GitLab 项目${PLAIN}: https://gitlab.com/Misaka-blog               #"
+    echo -e "# ${GREEN}Telegram 频道${PLAIN}: https://t.me/misakanocchannel              #"
+    echo -e "# ${GREEN}Telegram 群组${PLAIN}: https://t.me/misakanoc                     #"
+    echo -e "# ${GREEN}YouTube 频道${PLAIN}: https://www.youtube.com/@misaka-blog        #"
+    echo "#############################################################"
+    echo ""
+    echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria 2"
     echo -e " ${GREEN}2.${PLAIN} ${RED}卸载 Hysteria 2${PLAIN}"
     echo " -------------"
     echo -e " ${GREEN}3.${PLAIN} 关闭、开启、重启 Hysteria 2"
