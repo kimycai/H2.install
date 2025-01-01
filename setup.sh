@@ -215,8 +215,7 @@ inst_jump(){
 }
 
 inst_pwd(){
-    read -p "设置 Hysteria 2 密码（回车跳过为随机字符）：" auth_pwd
-    [[ -z $auth_pwd ]] && auth_pwd=$(date +%s%N | md5sum | cut -c 1-8)
+      auth_pwd=$(tr -cd 'a-zA-Z0-9' < /dev/urandom | fold -w 12 | head -n 1)
     yellow "使用在 Hysteria 2 节点的密码为：$auth_pwd"
 
 }
@@ -564,13 +563,6 @@ menu() {
     clear
     echo "#############################################################"
     echo -e "#                  ${RED}Hysteria 2 一键安装脚本${PLAIN}                  #"
-    echo -e "# ${GREEN}作者${PLAIN}: MisakaNo の 小破站                                  #"
-    echo -e "# ${GREEN}博客${PLAIN}: https://blog.misaka.cyou                            #"
-    echo -e "# ${GREEN}GitHub 项目${PLAIN}: https://github.com/Misaka-blog               #"
-    echo -e "# ${GREEN}GitLab 项目${PLAIN}: https://gitlab.com/Misaka-blog               #"
-    echo -e "# ${GREEN}Telegram 频道${PLAIN}: https://t.me/misakanocchannel              #"
-    echo -e "# ${GREEN}Telegram 群组${PLAIN}: https://t.me/misakanoc                     #"
-    echo -e "# ${GREEN}YouTube 频道${PLAIN}: https://www.youtube.com/@misaka-blog        #"
     echo "#############################################################"
     echo ""
     echo -e " ${GREEN}1.${PLAIN} 安装 Hysteria 2"
