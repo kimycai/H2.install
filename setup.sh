@@ -215,7 +215,8 @@ inst_jump(){
 }
 
 inst_pwd(){
-    auth_pwd=$(LC_ALL=C tr -dc 'a-zA-Z0-9!@#$%^&*()-_=+[{]}\|;:\'",<.>/?' < /dev/urandom | fold -w 20 | head -n 1)
+    read -p "设置 Hysteria 2 密码（回车跳过为随机字符）：" auth_pwd
+    [[ -z $auth_pwd ]] && auth_pwd=$(date +%s%N | md5sum | cut -c 1-8)
     yellow "使用在 Hysteria 2 节点的密码为：$auth_pwd"
 
 }
